@@ -1,0 +1,21 @@
+#namespaceOverride: jenkins
+master:
+  #javaOpts: "-Djenkins.install.runSetupWizard=false"
+  ingress:
+    path: /
+    enabled: true
+    hostName: cl5-jenkins.platform9.horse
+    apiVersion: "networking.k8s.io/v1beta1"
+  image: "pf9sys/jenkinsci"
+  tag: "jenkins-lts"
+persistence:
+  enabled: true
+  storageClass: rook-ceph-block
+rbac:
+  create: true
+  readSecrets: true
+serviceAccountAgent:
+  create: true
+
+
+
