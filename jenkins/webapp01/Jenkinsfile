@@ -4,7 +4,7 @@ pipeline {
 	environment {
 
 	  	GITHUB_ORGANIZATION = "KoolKubernetes"	
-      GITHUB_REPO = "cicd"
+      GITHUB_REPO = "helm"
 	  	//DOCKERHUB_REGISTRY = "pf9sys/webapp01" This is no more required as it is declared in Jenkins as env. variable
       REPOSITORY_TAG="${DOCKERHUB_REGISTRY}:${env.BUILD_ID}"
       //APP_PATH="cicd/jenkins/webapp01"
