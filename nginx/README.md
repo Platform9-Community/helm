@@ -1,15 +1,30 @@
-# NGINX ingress controller deployment on Platform9 Managed Kubernetes Freedom Plan
+# NGINX ingress controller deployment via a helm chart on Platform9 Managed Kubernetes
  
-Here we are going to deploy the well known NGINX ingress controller on top of the Platform9 Managed Kubernetes freedom tier. This deployment is going to require a PMK/FT 4.3 cluster (Kubernetes 1.16+) with metallb loadbalancer on baremetal servers/VMs running on Ubuntu 18.04 or Centos 7.6.
+Here we are going to deploy the well known NGINX ingress controller on top of the Platform9 Managed Kubernetes freedom tier via NGINX helm chart. This deployment is going to require a PMK/FT 4.4+ cluster (Kubernetes 1.17 or above) with metallb loadbalancer on baremetal servers/VMs running on Ubuntu 18.04 or Centos 7.6.
 
 # Prerequisites:
-Helm3 should be installed on the machine.
+Helmv3 preinstalled and kubernetes context preconfigured on the VM.
 
 
 Deployment
+Add the Helm repo for NGINX ingress controller
+```bash
+$ helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+"ingress-nginx" has been added to your repositories
+```
 
-Install the latest helm chart for NGINX based on the PMK version that exists on the cluster.
+Update the repo cache
+```bash
+$ helm repo update and list the latest version of the nginx helm chart
+...Successfully got an update from the "ingress-nginx" chart repository
+Update Complete. ⎈Happy Helming!⎈
 
+$ helm search repo ingress-nginx/ingress-nginx
+NAME                        CHART VERSION APP VERSION DESCRIPTION
+ingress-nginx/ingress-nginx 3.7.1         0.40.2      Ingress controller for Kubernetes using NGINX a...
+```bash
+
+Install the latest helm chart for NGINX on the cluster.
 
 ```bash
 $ helm show chart ingress-nginx/ingress-nginx
@@ -103,7 +118,7 @@ deployment.apps/ingress-nginx-controller   1/1     1            1           87s
 NAME                                                  DESIRED   CURRENT   READY   AGE
 replicaset.apps/ingress-nginx-controller-74cd44464c   1         1         1       87s
 ```
-Clone the cicd repo to test the ingress controller with our favorite pf9reactapp.
+Clone the cicd repo to test the ingress controller with a nodejs based pf9reactapp.
 
 ```bash
 $ git clone https://github.com/KoolKubernetes/cicd.git
@@ -164,13 +179,13 @@ Events:
 
 ```
 
-The Service p9-react-app within Kubernetes namespace p9-react-app is now exposed outside via hostname pf9app.platform9.horse. A DNS entry for this hostname with the ingress controller loadbalancer IP address with get you to the app in the browser. Modify the Manifest to set the hostname of your choice before deploying the app manifest on the cluster.
+The Service p9-react-app within Kubernetes namespace p9-react-app is now exposed outside via hostname pf9app.platform9.horse. A DNS entry for this hostname with the ingress controller loadbalancer IP address will get you to the app in the browser. Modify the Manifest to set the hostname of your choice before deploying the app manifest on the cluster.
 
 
 ![add-cred-dhub](https://github.com/KoolKubernetes/ingress/blob/master/nginx/images/app-ingress.png)
 
 
-Ingress controller should be running on a node which has enough resources. It can be further configured to add authentication, TLS termination so on and so forth.
+Ingress controller should be running on a node which has enough resources. It can be further configured to add authentication, TLS termination so on and so forth. A wild card DNS hostname is used for resolving all the host urls for different microservices that are exposed via ingress controller.
 
 
 
