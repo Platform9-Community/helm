@@ -48,7 +48,7 @@ version: 3.7.1
 
 Install the chart
 ```bash
-$ kubectl create ns ingress-nginx ; helm install ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx
+$ helm install ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx --create-namespace
 namespace/ingress-nginx created
 NAME: ingress-nginx
 LAST DEPLOYED: Thu Oct 22 14:10:07 2020
