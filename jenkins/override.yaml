@@ -3,7 +3,7 @@ master:
   #javaOpts: "-Djenkins.install.runSetupWizard=false"
   serviceType: "NodePort"
   image: "pf9sys/jenkinsci"
-  tag: "jenkins-lts-5"
+  tag: "jenkins-lts-6"
   resources:
     requests:
       cpu: "512m"
