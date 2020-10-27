@@ -22,7 +22,7 @@ Update Complete. ⎈Happy Helming!⎈
 $ helm search repo ingress-nginx/ingress-nginx
 NAME                        CHART VERSION APP VERSION DESCRIPTION
 ingress-nginx/ingress-nginx 3.7.1         0.40.2      Ingress controller for Kubernetes using NGINX a...
-```bash
+```
 
 Install the latest helm chart for NGINX on the cluster.
 
@@ -191,6 +191,6 @@ Ingress controller should be running on a node which has enough resources. It ca
 
 # Reference
 
-https://kubernetes.github.io/ingress-nginx/examples/
-
 https://kubernetes.github.io/ingress-nginx/
+
+https://kubernetes.github.io/ingress-nginx/deploy/#using-helm
