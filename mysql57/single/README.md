@@ -4,7 +4,7 @@
 
 MySQL is one of the most popular database servers. Here we are going to bootstrap a Mysql 5.7 database server on top of Platform9 Managed kubernetes 4.5.2 with helm. 
 
-# Prerequisites
+## Prerequisites
 1. Dynamic persistent volume provisioning with CSI driver via [Rook](https://github.com/KoolKubernetes/csi/tree/master/rook/) or a suitable CSI volume provisioner.
 2. [Platform9 Managed Kubernetes 4.5](https://docs.platform9.com/release-notes/)
 3. [Helm version 3](https://helm.sh/docs/intro/install/)
@@ -123,5 +123,5 @@ Bye
 pod "mysql-client" deleted
 ```
 
-# References
+## References
 https://github.com/helm/charts/tree/master/stable/mysql
